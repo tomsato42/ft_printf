@@ -6,7 +6,7 @@
 /*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:32:56 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/09 09:40:22 by tomsato          ###   ########.fr       */
+/*   Updated: 2024/11/09 10:14:37 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,27 @@ int	format_d(va_list args)
 	return (count);
 }
 
+int	format_i(va_list args)
+{
+	return (format_d(args));
+}
+
+int	format_percent(va_list args)
+{
+	const int	count = 1;
+	
+	(void)args;
+	ft_putchar_fd('%',STD_OUT);
+	return (count);
+}
+
 int	handle_format(char format, va_list args)
 {
 	int					count;
 	size_t				i;
-	const char			*format_list = "cspd";
+	const char			*format_list = "cspdi%";
 	// const char	*format_list = "cspdiuxX%";
-	const t_format_func	format_func[] = {format_c, format_s, format_p, format_d};
+	const t_format_func	format_func[] = {format_c, format_s, format_p, format_d, format_i, format_percent};
 
 	count = 0;
 	i = 0;
