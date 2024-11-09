@@ -6,20 +6,35 @@
 /*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:32:56 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/09 14:32:03 by tomsato          ###   ########.fr       */
+/*   Updated: 2024/11/09 15:07:07 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+#include "ft_printf.h"
+
+void	init_format_func(t_format_func *format_func)
+{
+	format_func[0] = format_c;
+	format_func[1] = format_s;
+	format_func[2] = format_p;
+	format_func[3] = format_d;
+	format_func[4] = format_i;
+	format_func[5] = format_u;
+	format_func[6] = format_smallx;
+	format_func[7] = format_bigx;
+	format_func[8] = format_percent;
+}
 
 int	handle_format(char format, va_list args)
 {
 	int					count;
 	size_t				i;
 	const char			*format_list = "cspdiuxX%";
-	const t_format_func	format_func[] = {format_c, format_s, format_p, format_d,
-		format_i, format_u, format_smallx, format_bigx, format_percent};
+	t_format_func		format_func[9];
 
+	init_format_func(format_func);
 	count = 0;
 	i = 0;
 	while (format_list[i])

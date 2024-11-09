@@ -6,7 +6,7 @@
 /*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:29 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/09 14:35:01 by tomsato          ###   ########.fr       */
+/*   Updated: 2024/11/09 15:06:40 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef int	(*t_format_func)(va_list);
 
 /*ft_printf.c*/
+void		init_format_func(t_format_func *format_func);
 int			handle_format(char format, va_list args);
 int			ft_printf(const char *format, ...);
 /*format_cs.c*/
