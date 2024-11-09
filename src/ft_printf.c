@@ -6,7 +6,7 @@
 /*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:32:56 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/09 12:08:54 by tomsato          ###   ########.fr       */
+/*   Updated: 2024/11/09 13:53:19 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,37 @@ int	format_u(va_list args)
 	return (count);
 }
 
+void	put_hex(unsigned long int hex, char *hex_table)
+{
+	if (15 < hex)
+	{
+		put_hex(hex / 16, hex_table);
+		put_hex(hex % 16, hex_table);
+	}
+	else
+	{
+		ft_putchar_fd(hex_table[hex], STD_OUT);
+	}
+}
+
+int	format_smallx(va_list args)
+{
+	const unsigned int	x = va_arg(args, unsigned int);
+	const int			count = (int)get_memlen((void *)x);
+
+	put_hex(x, HEX_SMALL);
+	return (count);
+}
+
+int	format_bigx(va_list args)
+{
+	const unsigned int	x = va_arg(args, unsigned int);
+	const int			count = (int)get_memlen((void *)x);
+
+	put_hex(x, HEX_BIG);
+	return (count);
+}
+
 int	format_percent(va_list args)
 {
 	const int	count = 1;
@@ -186,11 +217,10 @@ int	handle_format(char format, va_list args)
 {
 	int					count;
 	size_t				i;
-	const char			*format_list = "cspdiu%";
+	const char			*format_list = "cspdiuxX%";
 	const t_format_func	format_func[] = {format_c, format_s, format_p, format_d,
-		format_i, format_u, format_percent};
+		format_i, format_u, format_smallx, format_bigx, format_percent};
 
-	// const char	*format_list = "cspdiuxX%";
 	count = 0;
 	i = 0;
 	while (format_list[i])

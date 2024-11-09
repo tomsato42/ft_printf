@@ -1,7 +1,7 @@
 # コンパイラとフラグ
 CC = cc
 CFLAGS = -Wall -Wextra -Werror $(INCLUDE)
-
+#CFLAGS = $(INCLUDE)
 # ライブラリ名
 NAME = libftprintf.a
 
