@@ -6,7 +6,7 @@
 /*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:32:56 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/04 19:48:40 by tomsato          ###   ########.fr       */
+/*   Updated: 2024/11/09 09:40:22 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,40 @@ int	format_p(va_list args)
 	return (count);
 }
 
+int	get_int_len(long n)
+{
+	size_t	count;
+
+	count = 1;
+	if (n < 0)
+	{
+		n *= -1;
+		count++;
+	}
+	while (n >= 10)
+	{
+		n /= 10;
+		count++;
+	}
+	return ((int)count);
+}
+
+int	format_d(va_list args)
+{
+	const int	i = va_arg(args, int);
+	const int	count = get_int_len(i);
+	
+	ft_putnbr_fd((long)i, STD_OUT);
+	return (count);
+}
+
 int	handle_format(char format, va_list args)
 {
 	int					count;
 	size_t				i;
-	const char			*format_list = "csp";
+	const char			*format_list = "cspd";
 	// const char	*format_list = "cspdiuxX%";
-	const t_format_func	format_func[] = {format_c, format_s, format_p};
+	const t_format_func	format_func[] = {format_c, format_s, format_p, format_d};
 
 	count = 0;
 	i = 0;
