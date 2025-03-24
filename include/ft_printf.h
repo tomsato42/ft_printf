@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomsato <tomsato@student.42.jp>            +#+  +:+       +#+        */
+/*   By: tomsato <tomsato@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:29 by tomsato           #+#    #+#             */
-/*   Updated: 2024/11/09 15:06:40 by tomsato          ###   ########.fr       */
+/*   Updated: 2025/03/23 23:50:51 by tomsato          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define HEX_BIG "0123456789ABCDEF"
 # define HEX_SMALL "0123456789abcdef"
 /*include*/
-# include "libft.h"
+# include "../../libft/libft.h"
 # include <stdarg.h>
 /*typedef*/
 typedef int	(*t_format_func)(va_list);
